@@ -1,0 +1,8 @@
+{ "apps": [
+    { "name": "home",
+      "hostname": "10.X.X.X",
+      "port": "8081",
+      "options": { "x": 3350, "y": 10, "resizable": false }
+    }
+  ]
+}
