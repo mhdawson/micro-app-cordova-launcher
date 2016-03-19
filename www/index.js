@@ -5,6 +5,7 @@
 const BUTTON_ROW_SIZE = 50;
 const FRAME_ADJUST = 10;
 
+var currentApp;
 function showApp(event) {
   for (var i = 0; i < event.data.config.apps.length; i++) {
     if (event.data.showId !== i) {
@@ -13,9 +14,27 @@ function showApp(event) {
     } else {
       $('#frame' + i).show();
       $('#framebutton' + i).hide();
+      currentApp = i;
     }
   }
 }
+
+function showNext() {
+  var nextApp = currentApp + 1;
+  if (nextApp >= config.apps.length) {
+    nextApp = 0;
+  }
+  showApp({ data: {config: config, showId: nextApp}});
+}
+
+function showPrevious() {
+  var nextApp = currentApp - 1;
+  if (nextApp < 0 ) {
+    nextApp = config.apps.length - 1;
+  }
+  showApp({ data: {config: config, showId: nextApp}});
+}
+
 
 var decryptConfigValue = function(value, pass) {
   var passphrase = pass + pass;
@@ -137,6 +156,9 @@ var app = {
             $(frameId).hide();
             $(frameId).height(startHeight - BUTTON_ROW_SIZE - FRAME_ADJUST*2);
             $(frameId).width(startWidth - FRAME_ADJUST);
+          // enable swipe to move through the configured apps
+          $(frameId).bind('swipeleft', showNext);
+          $(frameId).bind('swiperight', showPrevious);
           }
 
           // ok now fill in the content for the frames
@@ -166,6 +188,10 @@ var app = {
           for (var i = 0; i < config.apps.length; i++) {
             $('#framebutton' + i).click({config: config, showId: i}, showApp);
           }
+
+          // enable swipe to move through the configured apps
+          $('#buttons').bind('swipeleft', showNext);
+          $('#buttons').bind('swiperight', showPrevious);
 
           window.addEventListener('orientationchange', adjustOrientationSizes);
        
