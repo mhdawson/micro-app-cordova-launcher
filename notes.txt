@@ -26,5 +26,9 @@ rm contents of www
 copy contents of www from this github project to launcher/www
 copy config.xml from github project to launcher directory
 
+// download CryptoJS from here: https://code.google.com/archive/p/crypto-js/downloads
+copy /rollups/aes.js into www directory
+
+
 cordova run
 
