@@ -144,7 +144,10 @@ var app = {
           for (var i = 0; i < config.apps.length; i++) {
             var method = 'http://';
             if (config.apps[i].tls) {
-              method = 'https://' + decryptConfigValue(config.apps[i].auth, pass) + '@';
+              method = 'https://';
+            };
+            if (config.apps[i].auth !== undefined) {
+              method = method +  decryptConfigValue(config.apps[i].auth, pass) + '@';
             };
             var frameId = '#frame' + i;
             var content = '<tr><td><iframe height="100%" width="100%" src="' +
