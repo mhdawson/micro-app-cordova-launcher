@@ -1,0 +1,6 @@
+238c238,240
+<                 super.onReceivedSslError(view, handler, error);
+---
+>                 handler.proceed();
+>                 return;
+>                 //super.onReceivedSslError(view, handler, error);
