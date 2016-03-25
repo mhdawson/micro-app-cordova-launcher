@@ -167,6 +167,9 @@ platform guides.
   </PRE>A full getting started is available
   [here](https://cordova.apache.org/#getstarted).
 
+* Install the tools for the platforms you want to install. Instructions
+  are provided in the platform guides referenced above.
+
 * Create your project.  For example:
   <PRE>
   cordova create launcher myorg "Micro App Launcher"
@@ -257,5 +260,5 @@ platform guides.
   if you understand the consequences and you should likely set it back after you 
   have installed the native micro-app apk.  Sample instructions to enable untrusted
   applications are available 
-  [here](http://www.tomsguide.com/faq/id-2326514/download-install-android-apps-unidentified-developer.html)
+  [here](http://www.tomsguide.com/faq/id-2326514/download-install-android-apps-unidentified-developer.html).
 
