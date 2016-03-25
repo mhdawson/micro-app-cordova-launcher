@@ -235,13 +235,21 @@ platform guides.
   <PRE>
   cordova build --release android
   </PRE>
-* Sign the application.  If you have not already created a key store you will have to do that first 
-  instructions for doing that are [here]()
+* Sign the application.  If you have not already created a key store you will have to do that first.
   <PRE>
   cp /home/user1/test/launcher/platforms/android/build/outputs/apk/android-release-unsigned.apk ma-launcher.apk
   jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore devrus-mobileapps.keystore ma-launcher.apk devrus-mobileapps
   </PRE>
   Substitute your org/name for "devrus" in the above command.
+
+   If you need to create a keystore
+  this is an sample command:
+  <PRE>
+  keytool -genkey -v -keystore devrus-mobileapps.keystore -alias devrus-mobileapps -keyalg RSA -keysize 2048 -validity 10000
+  </PRE>
+  See the help for keytool for additional information about the various options. At the very least you should substitute
+  "devrus" with your name or the name of your org and adjust the validity to something appropriate.
+
 
 * At this point you can now transfer the apk to your Android device and install it.
   If you don't have a certificate that will be recognized as trusted by you will
