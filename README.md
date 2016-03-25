@@ -14,9 +14,9 @@ While its nice to be able to run the applications remotely using
 a browser from any machine sometimes you want the look and feel of
 a native application either on your workstation or mobile device.
 
-This project [micro-app-electron-launcher]
-(https://github.com/mhdawson/micro-app-electron-launcher) works
-with the framework to provide native look and feel for linux,
+The [micro-app-electron-launcher]
+(https://github.com/mhdawson/micro-app-electron-launcher) project
+works with the framework to provide native look and feel for linux,
 windows (and mac, but I've not tested that) along with some
 nice options like being able to open multiple apps and position
 them on your desktop easily.
@@ -24,11 +24,12 @@ them on your desktop easily.
 This project rounds things out by using
 [cordova](https://cordova.apache.org/) in order to allow
 you do deploy the applications as a native application on your
-mobilde device.  So far I've only tested on Android but since
-cordova supports iphones it should work there as well.
+mobile device.  So far I've only tested on Android but since
+cordova supports iOS it should work there as well.
 
-Using this project you can build a native package (ex apk
-for android that supports one or more micro-apps).
+Using this project you can build a native package (for
+example an apk for Android that supports
+one or more micro-apps).
 
 This screenshot shows the native app on the main page for my
 phone:
@@ -64,9 +65,9 @@ between the apps in a sequential manner.
 The configuration file shares the same format with the
 [micro-app-electron-launcher](https://github.com/mhdawson/micro-app-electron-launcher)
 project so you can easily configure your apps across your
-workstation/mobile devices.  
+workstation and mobile devices.
 
-For example this is one of my configuration files
+For example, this is one of my configuration files
 (with some sensitive parts masked out) :
 
 <PRE>
@@ -121,7 +122,7 @@ The values you can configure for each micro-app are as follows:
 * auth - if the micro-app requires authentication then you
          must provide the password for the micro-app
          encrypted using the enc_config_value.js utility.
-         (see below).  When you start native application
+         (see below).  When you start the native application
          you will be prompted for the password used to
          generate the key for the encryption. 
 
@@ -150,12 +151,13 @@ authentication.  The screen is as follows:
 
 # Building
 
-In order to build the native application you need to do the following.
-These steps are for the Android platform as that's what I have
-but the iOS flow should be similar.  These are the 
+In order to build the native application you need to complete the
+steps listed below. These steps are for the Android platform
+as that's what I have, however the iOS flow should be similar.
+If you need additional information, the
+platform guides for the two key mobile platforms are 
 [Android](https://cordova.apache.org/docs/en/dev/guide/platforms/android/)
-and [iOS](https://cordova.apache.org/docs/en/dev/guide/platforms/ios/index.html)
-platform guides. 
+and [iOS](https://cordova.apache.org/docs/en/dev/guide/platforms/ios/index.html).
 
 * Install Node.js - cordova build tools run using Node.js,
   you can download Node.js from [here](https://nodejs.org/en/).
@@ -163,11 +165,11 @@ platform guides.
 * Install cordova build tools.  These tools are available as an
   npm.  The easiest way is to install is to simply run:
   <PRE>
-  "npm install -g cordova".
+  npm install -g cordova
   </PRE>A full getting started is available
   [here](https://cordova.apache.org/#getstarted).
 
-* Install the tools for the platforms you want to install. Instructions
+* Install the tools for the platforms you want to support. Instructions
   are provided in the platform guides referenced above.
 
 * Create your project.  For example:
@@ -193,7 +195,7 @@ platform guides.
   that will be able to be verified.  [letsencrypt](https://letsencrypt.org/) looks
   like one free possibility:
   <PRE>
-  patch platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemWebViewClient.java <allowServers.patch
+  patch platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemWebViewClient.java &lt;allowServers.patch
   </PRE>
 
 * replace www in the new cordova project with the contents of www from this
@@ -210,7 +212,7 @@ platform guides.
   </PRE>
   to limit the allowable origins to domains that you are willing to trust
   to run content on your phone.  You should read the 
-  [cordova security guide](https://cordova.apache.org/docs/en/4.0.0/guide/appdev/security/)
+  [cordova security guide](https://cordova.apache.org/docs/en/latest/guide/appdev/security/index.html)
   for more details.
 * edit this line from www/index.html to limit to the domains you are willing
   to trust to run content on your phone:
@@ -220,7 +222,7 @@ platform guides.
   You will either need to include the code.jquery.com site or copy the scripts referenced in index.html
   to the www directory and update the references in index.html.  You
   should read the
-  [cordova security guide](https://cordova.apache.org/docs/en/4.0.0/guide/appdev/security/)
+  [cordova security guide](https://cordova.apache.org/docs/en/latest/guide/appdev/security/index.html)
   for more details.
 * download CryptoJS from here: https://code.google.com/archive/p/crypto-js/downloads and copy 
   /rollups/aes.js into the www directory.  I've not included this in this project to avoid
@@ -228,12 +230,13 @@ platform guides.
 * create the file config.json in the www diretory to specify the micro-apps to be included in the 
   native application.  The configuration format/options are as described in the configuration
   section above.
-* if you have the android development tools (or iOS equivalents) installed you can now test
+* if you have the Android development tools (or iOS equivalents) installed you can now test
   out by connecting your phone and running:
   <PRE>
   cordova run
   </PRE>
-  This step is optional
+  This step is optional.
+
 * build the application:
   <PRE>
   cordova build --release android
@@ -245,8 +248,8 @@ platform guides.
   </PRE>
   Substitute your org/name for "devrus" in the above command.
 
-   If you need to create a keystore
-  this is an sample command:
+  If you need to create a keystore
+  this is a sample command:
   <PRE>
   keytool -genkey -v -keystore devrus-mobileapps.keystore -alias devrus-mobileapps -keyalg RSA -keysize 2048 -validity 10000
   </PRE>
