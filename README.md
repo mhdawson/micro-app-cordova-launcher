@@ -40,7 +40,10 @@ The following are screenshots of a number of the apps running
 on my phone:
 
 ![alert-dashboard](https://raw.githubusercontent.com/mhdawson/micro-app-cordova-launcher/master/pictures/phone-alert-dashboard.jpg)
-![dialer]((https://raw.githubusercontent.com/mhdawson/micro-app-cordova-launcher/master/pictures/phone-dialer.jpg)
-![house-dashboard]((https://raw.githubusercontent.com/mhdawson/micro-app-cordova-launcher/master/pictures/phone-house-dashboard.jpg)
-![timezones]((https://raw.githubusercontent.com/mhdawson/micro-app-cordova-launcher/master/pictures/phone-timezones.jpg)
+
+![dialer](https://raw.githubusercontent.com/mhdawson/micro-app-cordova-launcher/master/pictures/phone-dialer.jpg)
+
+![house-dashboard](https://raw.githubusercontent.com/mhdawson/micro-app-cordova-launcher/master/pictures/phone-house-dashboard.jpg)
+
+![timezones](https://raw.githubusercontent.com/mhdawson/micro-app-cordova-launcher/master/pictures/phone-timezones.jpg)
 
