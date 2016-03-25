@@ -62,11 +62,11 @@ addition, you can swipe left or right on the buttons to move
 between the apps in a sequential manner.
 
 The configuration file shares the same format with the
-(micro-app-electron-launcher](https://github.com/mhdawson/micro-app-electron-launcher)
+[micro-app-electron-launcher](https://github.com/mhdawson/micro-app-electron-launcher)
 project so you can easily configure your apps across your
 workstation/mobile devices.  
 
-For example this is one of my configurations
+For example this is one of my configuration files
 (with some sensitive parts masked out) :
 
 <PRE>
@@ -104,9 +104,9 @@ For example this is one of my configurations
 }
 </PRE>
 
-In order to be compatible with the configuration files for
-(micro-app-electron-launcher](https://github.com/mhdawson/micro-app-electron-launcher)
-it ignores unsupported parameters.  For example, in the
+In order to be compatible with the configuration files for the
+[micro-app-electron-launcher](https://github.com/mhdawson/micro-app-electron-launcher)
+project it ignores unsupported parameters.  For example, in the
 configuration file above, options is a value not supported by the
 cordova launcher so it is simply ignored.
 
