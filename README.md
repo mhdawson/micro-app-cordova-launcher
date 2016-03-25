@@ -150,3 +150,104 @@ authentication.  The screen is as follows:
 
 # Building
 
+In order to build the native application you need to do the following.
+These steps are for the Android platform as that's what I have
+but the iOS flow should be similar.  These are the 
+[Android](https://cordova.apache.org/docs/en/dev/guide/platforms/android/)
+and [iOS](https://cordova.apache.org/docs/en/dev/guide/platforms/ios/index.html)
+platform guides. 
+
+* Install Node.js - cordova build tools run using Node.js,
+  you can download Node.js from [here](https://nodejs.org/en/).
+
+* Install cordova build tools.  These tools are available as an
+  npm.  The easiest way is to install is to simply run:
+  <PRE>
+  "npm install -g cordova".
+  </PRE>A full getting started is available
+  [here](https://cordova.apache.org/#getstarted).
+
+* Create your project.  For example:
+  <PRE>
+  cordova create launcher myorg "Micro App Launcher"
+  </PRE> 
+  where launcher will be the directory name for the
+  project and "Micro App Launcher" will be the name
+  shown for the native application.
+* Add the platforms you want to support.  For
+  example:
+  <PRE>
+  cordova platform add android
+  </PRE>
+* Add required plugins.  This is the list currently
+  required by the micro-app launcher:
+  <PRE>
+  // in order to enable file functionality
+  cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file.git
+  </PRE>
+* Apply patch to allow server certificates that are not verified.  You should 
+  only do this for development and instead get certificates for your mico-apps
+  that will be able to be verified.  [letsencrypt](https://letsencrypt.org/) looks
+  like one free possibility:
+  <PRE>
+  patch platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemWebViewClient.java <allowServers.patch
+  </PRE>
+
+* replace www in the new cordova project with the contents of www from this
+  project:
+  <PRE>
+  rm contents of www
+  copy contents of www from this github project to launcher/www
+  </PRE>
+   
+* copy config.xml from this project to directory for the cordova project.  You should
+  then update the following line in config.xml:
+  <PRE>
+  &lt;access origin="*" /&gt;
+  </PRE>
+  to limit the allowable origins to domains that you are willing to trust
+  to run content on your phone.  You should read the 
+  [cordova security guide](https://cordova.apache.org/docs/en/4.0.0/guide/appdev/security/)
+  for more details.
+* edit this line from www/index.html to limit to the domains you are willing
+  to trust to run content on your phone:
+  <PRE>
+  &lt;meta http-equiv="Content-Security-Policy" content="default-src 'self' *;script-src * 'unsafe-eval'"&gt;
+  </PRE>
+  You will either need to include the code.jquery.com site or copy the scripts referenced in index.html
+  to the www directory and update the references in index.html.  You
+  should read the
+  [cordova security guide](https://cordova.apache.org/docs/en/4.0.0/guide/appdev/security/)
+  for more details.
+* download CryptoJS from here: https://code.google.com/archive/p/crypto-js/downloads and copy 
+  /rollups/aes.js into the www directory.  I've not included this in this project to avoid
+  any licencing/export issues.
+* create the file config.json in the www diretory to specify the micro-apps to be included in the 
+  native application.  The configuration format/options are as described in the configuration
+  section above.
+* if you have the android development tools (or iOS equivalents) installed you can now test
+  out by connecting your phone and running:
+  <PRE>
+  cordova run
+  </PRE>
+  This step is optional
+* build the application:
+  <PRE>
+  cordova build --release android
+  </PRE>
+* Sign the application.  If you have not already created a key store you will have to do that first 
+  instructions for doing that are [here]()
+  <PRE>
+  cp /home/user1/test/launcher/platforms/android/build/outputs/apk/android-release-unsigned.apk ma-launcher.apk
+  jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore devrus-mobileapps.keystore ma-launcher.apk devrus-mobileapps
+  </PRE>
+  Substitute your org/name for "devrus" in the above command.
+
+* At this point you can now transfer the apk to your Android device and install it.
+  If you don't have a certificate that will be recognized as trusted by you will
+  need to enable applications to be installed from untrusted sources.  Only do this
+  if you understand the consequences and you should likely set it back after you 
+  have installed the native micro-app apk.  Sample instructions to enable untrusted
+  applications are available 
+  [here](http://www.tomsguide.com/faq/id-2326514/download-install-android-apps-unidentified-developer.html)
+
