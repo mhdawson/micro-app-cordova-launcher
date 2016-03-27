@@ -214,6 +214,7 @@ and [iOS](https://cordova.apache.org/docs/en/dev/guide/platforms/ios/index.html)
   to run content on your phone.  You should read the 
   [cordova security guide](https://cordova.apache.org/docs/en/latest/guide/appdev/security/index.html)
   for more details.
+* edit widget id=xxx in config.xml so that it is unique to your application
 * edit this line from www/index.html to limit to the domains you are willing
   to trust to run content on your phone:
   <PRE>
